@@ -7,6 +7,15 @@ export default function Home() {
         <title>Twitter</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      {/* Creating main component that will nest sub components */}
+      <main>
+        {/* Sidebar */}
+        {/* Feed */}
+        {/* Widgets */}
+
+        {/* Modal (using recoil to control the state of the modal) */}
+      </main>
     </div>
   );
 }
