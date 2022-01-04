@@ -1,16 +1,21 @@
 import Head from "next/head";
+import Sidebar from "../components/Sidebar";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="">
+      {/* The head edits the text/icon next to the tab */}
       <Head>
         <title>Twitter</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       {/* Creating main component that will nest sub components */}
-      <main>
+      {/* To have custom values just use []
+        * Ex: h-[400px] or bg-[#000] */}
+      <main className="bg-black min-h-screen flex max-w-[1500px] mx-auto">
         {/* Sidebar */}
+        <Sidebar />
         {/* Feed */}
         {/* Widgets */}
 
