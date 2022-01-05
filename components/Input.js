@@ -54,6 +54,7 @@ function Input() {
 
         <div className="flex items-center justify-between pt-2.5">
           <div className="flex items-center">
+            {/* This onClick selects the current file from filepickerref and want the event to occur here (on the img icon) */}
             <div className="icon" onClick={() => filePickerRef.current.click()}>
               <PhotographIcon className="h-[22px] text-[#1d9bf0]" />
 
@@ -62,6 +63,7 @@ function Input() {
                 type="file"
                 hidden
                 onChange={addImageToPost}
+                // this functionality happens on the onlcick above
                 ref={filePickerRef}
               />
             </div>
