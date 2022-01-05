@@ -1,9 +1,13 @@
-import { XIcon } from "@heroicons/react/outline";
-import { useState } from "react";
+import { PhotographIcon, XIcon } from "@heroicons/react/outline";
+import { useRef, useState } from "react";
 
 function Input() {
   const [input, setInput] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  // references are pointers
+  const filePickerRef = useRef(null);
+
+  const addImageToPost = () => {};
 
   return (
     <div
@@ -33,9 +37,11 @@ function Input() {
               <div
                 className="absolute w-8 h-8 bg-[#15181c] hover:bg-[#272c26] bg-opacity-75 rounded-full flex items-center
               justify-center top-1 left-1 cursor-pointer"
+                onClick={() => setSelectedFile(null)}
               >
                 <XIcon className="text-white h-5" />
               </div>
+
               <img
                 src={selectedFile}
                 alt=""
@@ -44,6 +50,22 @@ function Input() {
               />
             </div>
           )}
+        </div>
+
+        <div className="flex items-center justify-between pt-2.5">
+          <div className="flex items-center">
+            <div className="icon" onClick={() => filePickerRef.current.click()}>
+              <PhotographIcon className="h-[22px] text-[#1d9bf0]" />
+
+              {/* Pointing the reference to this input field here */}
+              <input
+                type="file"
+                hidden
+                onChange={addImageToPost}
+                ref={filePickerRef}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
