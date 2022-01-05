@@ -28,20 +28,22 @@ function Input() {
             tracking-wide w-full min-h-[50px]"
           />
 
-          <div className="relative">
-            <div
-              className="absolute w-8 h-8 bg-[#15181c] hover:bg-[#272c26] bg-opacity-75 rounded-full flex items-center
+          {selectedFile && (
+            <div className="relative">
+              <div
+                className="absolute w-8 h-8 bg-[#15181c] hover:bg-[#272c26] bg-opacity-75 rounded-full flex items-center
               justify-center top-1 left-1 cursor-pointer"
-            >
-              <XIcon className="text-white h-5" />
+              >
+                <XIcon className="text-white h-5" />
+              </div>
+              <img
+                src={selectedFile}
+                alt=""
+                // object contain makes the file not stretched (object fit)
+                className="rounded-2xl max-h-80 object-contain"
+              />
             </div>
-            <img
-              src={selectedFile}
-              alt=""
-              // object contain makes the file not stretched (object fit)
-              className="rounded-2xl max-h-80 object-contain"
-            />
-          </div>
+          )}
         </div>
       </div>
     </div>
