@@ -7,6 +7,7 @@ function Input() {
         className="h-11 w-11 rounded-full cursor-pointer"
       />
 
+      {/* divide-y: basically creates a line bw each of the child without adding it manually to each div */}
       <div className="w-full divide-y divide-gray-700">
         <div>
           <textarea name="" id="" cols="30" rows="10"></textarea>
