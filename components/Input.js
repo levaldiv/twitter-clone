@@ -119,6 +119,8 @@ function Input() {
 
           <button
             className="tweet"
+            /* if the btn is disabled, the disabled classes in global css kick in to change the
+             * appearance of the bt */
             disabled={!input.trim() && !selectedFile}
             // onClick={sendPost}
           >
