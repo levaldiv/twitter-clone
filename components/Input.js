@@ -1,13 +1,33 @@
-import { PhotographIcon, XIcon } from "@heroicons/react/outline";
+import {
+  CalendarIcon,
+  ChartBarIcon,
+  EmojiHappyIcon,
+  PhotographIcon,
+  XIcon,
+} from "@heroicons/react/outline";
 import { useRef, useState } from "react";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 function Input() {
   const [input, setInput] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+  // vars to show emojis
+  const [showEmojis, setShowEmojis] = useState(false);
   // references are pointers
   const filePickerRef = useRef(null);
 
   const addImageToPost = () => {};
+
+  // accepting an event
+  const addEmoji = (e) => {
+    // this combines the input feild with the emojis so they can be used togther
+    let sym = e.unified.split("-");
+    let codesArray = [];
+    sym.forEach((el) => codesArray.push("0x" + el));
+    let emoji = String.fromCodePoint(...codesArray);
+    setInput(input + emoji);
+  };
 
   return (
     <div
@@ -67,6 +87,34 @@ function Input() {
                 ref={filePickerRef}
               />
             </div>
+
+            {/* creating the other icons */}
+            <div className="icon rotate-90">
+              <ChartBarIcon className="text-[#1d9bf0] h-[22px]" />
+            </div>
+
+            <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
+              <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
+            </div>
+
+            <div className="icon">
+              <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
+            </div>
+
+            {/* Renders if showemojis is true (if the emoji icon is clicked) */}
+            {showEmojis && (
+              <Picker
+                onSelect={addEmoji}
+                style={{
+                  position: "absolute",
+                  marginTop: "465px",
+                  marginLeft: -40,
+                  maxWidth: "320px",
+                  borderRadius: "20px",
+                }}
+                theme="dark"
+              />
+            )}
           </div>
         </div>
       </div>
