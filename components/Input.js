@@ -116,6 +116,14 @@ function Input() {
               />
             )}
           </div>
+
+          <button
+            className="tweet"
+            disabled={!input.trim() && !selectedFile}
+            // onClick={sendPost}
+          >
+            Tweet
+          </button>
         </div>
       </div>
     </div>
