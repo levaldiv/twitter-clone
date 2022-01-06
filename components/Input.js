@@ -48,7 +48,7 @@ function Input() {
     });
 
     /* get the storage, provide the URL of how its going to store the image */
-    const imageRef = ref(storage, `posts\${docRef.id}/image`);
+    const imageRef = ref(storage, `posts/${docRef.id}/image`);
   };
 
   // accepting an event
