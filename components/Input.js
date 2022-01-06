@@ -41,7 +41,7 @@ function Input() {
 
       {/* divide-y: basically creates a line bw each of the child without adding it manually to each div */}
       <div className="w-full divide-y divide-gray-700">
-        <div>
+        <div className={`${selectedFile && "pb-7"} ${input && "space-y-2.5"}`}>
           <textarea
             value={input}
             // makes sure everytime i type something it changes the input
@@ -120,7 +120,7 @@ function Input() {
           <button
             className="tweet"
             /* if the btn is disabled, the disabled classes in global css kick in to change the
-             * appearance of the bt 
+             * appearance of the bt
              * input.trim removes the leading & trailing spaces ensuring that the btn stays disabled
              * when only spaces are added */
             disabled={!input.trim() && !selectedFile}
