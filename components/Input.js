@@ -139,63 +139,68 @@ function Input() {
           )}
         </div>
 
-        <div className="flex items-center justify-between pt-2.5">
-          <div className="flex items-center">
-            {/* This onClick selects the current file from filepickerref and want the event to occur here (on the img icon) */}
-            <div className="icon" onClick={() => filePickerRef.current.click()}>
-              <PhotographIcon className="h-[22px] text-[#1d9bf0]" />
+        {!loading && (
+          <div className="flex items-center justify-between pt-2.5">
+            <div className="flex items-center">
+              {/* This onClick selects the current file from filepickerref and want the event to occur here (on the img icon) */}
+              <div
+                className="icon"
+                onClick={() => filePickerRef.current.click()}
+              >
+                <PhotographIcon className="h-[22px] text-[#1d9bf0]" />
 
-              {/* Pointing the reference to this input field here */}
-              <input
-                type="file"
-                hidden
-                onChange={addImageToPost}
-                // this functionality happens on the onlcick above
-                ref={filePickerRef}
-              />
+                {/* Pointing the reference to this input field here */}
+                <input
+                  type="file"
+                  hidden
+                  onChange={addImageToPost}
+                  // this functionality happens on the onlcick above
+                  ref={filePickerRef}
+                />
+              </div>
+
+              {/* creating the other icons */}
+              <div className="icon rotate-90">
+                <ChartBarIcon className="text-[#1d9bf0] h-[22px]" />
+              </div>
+
+              <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
+                <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
+              </div>
+
+              <div className="icon">
+                <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
+              </div>
+
+              {/* Renders if showemojis is true (if the emoji icon is clicked) */}
+              {showEmojis && (
+                <Picker
+                  onSelect={addEmoji}
+                  style={{
+                    position: "absolute",
+                    marginTop: "465px",
+                    marginLeft: -40,
+                    maxWidth: "320px",
+                    borderRadius: "20px",
+                  }}
+                  theme="dark"
+                />
+              )}
             </div>
 
-            {/* creating the other icons */}
-            <div className="icon rotate-90">
-              <ChartBarIcon className="text-[#1d9bf0] h-[22px]" />
-            </div>
-
-            <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
-              <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
-            </div>
-
-            <div className="icon">
-              <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
-            </div>
-
-            {/* Renders if showemojis is true (if the emoji icon is clicked) */}
-            {showEmojis && (
-              <Picker
-                onSelect={addEmoji}
-                style={{
-                  position: "absolute",
-                  marginTop: "465px",
-                  marginLeft: -40,
-                  maxWidth: "320px",
-                  borderRadius: "20px",
-                }}
-                theme="dark"
-              />
-            )}
+            <button
+              className="tweet"
+              /* if the btn is disabled, the disabled classes in global css kick in to change the
+               * appearance of the bt
+               * input.trim removes the leading & trailing spaces ensuring that the btn stays disabled
+               * when only spaces are added */
+              disabled={!input.trim() && !selectedFile}
+              // onClick={sendPost}
+            >
+              Tweet
+            </button>
           </div>
-
-          <button
-            className="tweet"
-            /* if the btn is disabled, the disabled classes in global css kick in to change the
-             * appearance of the bt
-             * input.trim removes the leading & trailing spaces ensuring that the btn stays disabled
-             * when only spaces are added */
-            disabled={!input.trim() && !selectedFile}
-            // onClick={sendPost}
-          >
-            Tweet
-          </button>
-        </div>
+        )}
       </div>
     </div>
   );
