@@ -8,6 +8,15 @@ import {
 import { useRef, useState } from "react";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
+import { db, storage } from "../firebase";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  updateDoc,
+} from "@firebase/firestore";
+import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 
 function Input() {
   const [input, setInput] = useState("");
@@ -21,11 +30,20 @@ function Input() {
   const addImageToPost = () => {};
 
   // this will send the posts/text/emojis to firebase
-  const sendPost = () => {
+  const sendPost = async () => {
     // if loading is true ; return
-    if(loading) return;
+    if (loading) return;
     // if loading isnt true and its false, set the loading immediately to true
     setLoading(true);
+
+    const docRef = await addDoc(collection(db, "posts"), {
+      id: session.user.uid,
+      username: session.user.name,
+      userImg: session.user.image,
+      tag: session.user.tag,
+      text: input,
+      timestap: serverTimestamp(),
+    });
   };
 
   // accepting an event
