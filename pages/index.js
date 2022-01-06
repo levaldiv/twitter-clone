@@ -2,8 +2,13 @@ import Head from "next/head";
 import Feed from "../components/Feed";
 import Sidebar from "../components/Sidebar";
 import { getProviders, getSession, useSession } from "next-auth/react";
+import Login from "../components/Login";
 
-export default function Home() {
+export default function Home({ trendingResults, followResults, providers }) {
+  const { data: session } = useSession();
+
+  if (!session) return <Login providers={providers} />;
+
   return (
     <div className="">
       {/* The head edits the text/icon next to the tab */}
