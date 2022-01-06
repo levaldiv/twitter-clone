@@ -58,6 +58,12 @@ function Input() {
         });
       });
     }
+
+    // happens AFTER the post has been made (resets everything to the original state)
+    setLoading(false);
+    setInput("");
+    setSelectedFile(null);
+    setShowEmojis(false);
   };
 
   // accepting an event
