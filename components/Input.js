@@ -51,9 +51,14 @@ function Input() {
     const imageRef = ref(storage, `posts/${docRef.id}/image`);
 
     if (selectedFile) {
+      /* uploads a string to the objects location
+       * Converted the selected file into a 'clean' URL (which firbase creates for us) */
       await uploadString(imageRef, selectedFile, "data_url").then(async () => {
+        // getting the created firebase url and storing it in downloadurl
         const downloadURL = await getDownloadURL(imageRef);
+        // then it updates the document (which i created inside posts)
         await updateDoc(doc(db, "posts", docRef.id), {
+          // then im updating the the document with the images download url
           image: downloadURL,
         });
       });
