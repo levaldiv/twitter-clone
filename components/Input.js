@@ -27,7 +27,22 @@ function Input() {
   // references are pointers
   const filePickerRef = useRef(null);
 
-  const addImageToPost = () => {};
+  // accepts an event
+  const addImageToPost = (e) => {
+    // adding image to my poster
+    const reader = new FileReader();
+    // this is how you target files
+    if (e.target.files[0]) {
+      // use the reader and then read the data as data URL and send in the 'blob'
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    // accepts reader event
+    reader.onload = (readerEvent) => {
+      // get event and set selected file to the result of the that event
+      setSelectedFile(readerEvent.target.result);
+    };
+  };
 
   // this will send the posts/text/emojis to firebase
   const sendPost = async () => {
