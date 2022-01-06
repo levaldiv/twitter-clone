@@ -36,11 +36,13 @@ function Input() {
     // if loading isnt true and its false, set the loading immediately to true
     setLoading(true);
 
+    /* inside firestore, i want to create a collection and add a document to a collection
+     * called posts with the follwing items (eg. id, username ....) */
     const docRef = await addDoc(collection(db, "posts"), {
-      id: session.user.uid,
-      username: session.user.name,
-      userImg: session.user.image,
-      tag: session.user.tag,
+      // id: session.user.uid,
+      // username: session.user.name,
+      // userImg: session.user.image,
+      // tag: session.user.tag,
       text: input,
       timestap: serverTimestamp(),
     });
