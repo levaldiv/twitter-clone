@@ -14,10 +14,19 @@ function Input() {
   const [selectedFile, setSelectedFile] = useState(null);
   // vars to show emojis
   const [showEmojis, setShowEmojis] = useState(false);
+  const [loading, setLoading] = useState(false);
   // references are pointers
   const filePickerRef = useRef(null);
 
   const addImageToPost = () => {};
+
+  // this will send the posts/text/emojis to firebase
+  const sendPost = () => {
+    // if loading is true ; return
+    if(loading) return;
+    // if loading isnt true and its false, set the loading immediately to true
+    setLoading(true);
+  };
 
   // accepting an event
   const addEmoji = (e) => {
