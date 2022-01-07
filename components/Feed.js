@@ -1,7 +1,11 @@
 import { SparklesIcon } from "@heroicons/react/outline";
+import { useState } from "react";
 import Input from "./Input";
 
 function Feed() {
+  // these vars will allow me to retrieve the posts from firebase 
+  const [posts, setPosts] = useState([]);
+
   return (
     <div
       className="text-white flex-grow border-l border-r border-gray-700
@@ -15,13 +19,17 @@ function Feed() {
         <h2 className="text-lg sm:text-xl font-bold">Home</h2>
 
         {/* When i hover over this, i want my icon to be in the center */}
-        <div className="hoverAnimation w-9 h-9 flex items-center justify-center
-        xl:px-0 ml-auto">
+        <div
+          className="hoverAnimation w-9 h-9 flex items-center justify-center
+        xl:px-0 ml-auto"
+        >
           <SparklesIcon className="h-5 text-white" />
         </div>
       </div>
 
       <Input />
+
+      <div className="pb-72"></div>
     </div>
   );
 }
