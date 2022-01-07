@@ -11,7 +11,7 @@ import {
   DotsHorizontalIcon,
 } from "@heroicons/react/outline";
 import SidebarLink from "./SidebarLink";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 function Sidebar() {
   const { data: session } = useSession();
@@ -49,6 +49,7 @@ function Sidebar() {
       <div
         className="text-[#d9d9d9] flex items-center justify-center hoverAnimation 
       xl:ml-auto xl:-mr-5 mt-auto"
+        onClick={signOut}
       >
         <img
           src={session.user.image}
