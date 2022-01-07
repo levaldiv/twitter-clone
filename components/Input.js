@@ -17,6 +17,7 @@ import {
   updateDoc,
 } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
+import { useSession } from "next-auth/react";
 
 function Input() {
   const [input, setInput] = useState("");
@@ -26,6 +27,7 @@ function Input() {
   const [loading, setLoading] = useState(false);
   // references are pointers
   const filePickerRef = useRef(null);
+  const { data: session } = useSession();
 
   // accepts an event
   const addImageToPost = (e) => {
@@ -54,10 +56,10 @@ function Input() {
     /* inside firestore, i want to create a collection and add a document to a collection
      * called posts with the follwing items (eg. id, username ....) */
     const docRef = await addDoc(collection(db, "posts"), {
-      // id: session.user.uid,
-      // username: session.user.name,
-      // userImg: session.user.image,
-      // tag: session.user.tag,
+      id: session.user.uid,
+      username: session.user.name,
+      userImg: session.user.image,
+      tag: session.user.tag,
       text: input,
       timestap: serverTimestamp(),
     });
@@ -98,10 +100,12 @@ function Input() {
 
   return (
     <div
-      className={`border-b border-gray-700 p-3 flex space-x-3 overflow-y-scroll ${loading && "opacity-60"}`}
+      className={`border-b border-gray-700 p-3 flex space-x-3 overflow-y-scroll ${
+        loading && "opacity-60"
+      }`}
     >
       <img
-        src="https://media-exp1.licdn.com/dms/image/D5635AQEyNbzjaS9vpw/profile-framedphoto-shrink_100_100/0/1641261133658?e=1641427200&v=beta&t=Q2BizxXqz07bAzGiayk2wsdeRiOaXeHZRZ_EvCFHVQ8"
+        src={session.user.image}
         alt=""
         className="h-11 w-11 rounded-full cursor-pointer"
       />
