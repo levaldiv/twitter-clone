@@ -11,8 +11,11 @@ import {
   DotsHorizontalIcon,
 } from "@heroicons/react/outline";
 import SidebarLink from "./SidebarLink";
+import { useSession } from "next-auth/react";
 
 function Sidebar() {
+  const { data: session } = useSession();
+
   return (
     <div
       className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px]
@@ -48,14 +51,14 @@ function Sidebar() {
       xl:ml-auto xl:-mr-5 mt-auto"
       >
         <img
-          src="https://media-exp1.licdn.com/dms/image/D5635AQEyNbzjaS9vpw/profile-framedphoto-shrink_100_100/0/1641261133658?e=1641427200&v=beta&t=Q2BizxXqz07bAzGiayk2wsdeRiOaXeHZRZ_EvCFHVQ8"
+          src={session.user.image}
           alt=""
           className="h-10 w-10 rounded-full xl:mr-2.5"
         />
 
         <div className="hidden xl:inline leading-5">
-          <h4 className="font-bold">Valdivia</h4>
-          <p className="text-[#6e767d]">@Valdivia</p>
+          <h4 className="font-bold">{session.user.name}</h4>
+          <p className="text-[#6e767d]">@{session.user.tag}</p>
         </div>
 
         <DotsHorizontalIcon className="h-5 hidden xl:inline ml-10" />
