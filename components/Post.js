@@ -1,5 +1,5 @@
 function Post() {
-  return <div>Post</div>;
+  return <div></div>;
 }
 
 export default Post;
