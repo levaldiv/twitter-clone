@@ -1,9 +1,10 @@
 import { SparklesIcon } from "@heroicons/react/outline";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../firebase";
 import Input from "./Input";
+import { onSnapshot, collection, query, orderBy } from "@firebase/firestore";
+import { db } from "../firebase";
 import Post from "./Post";
+import { useSession } from "next-auth/react";
 
 function Feed() {
   // these vars will allow me to retrieve the posts from firebase
@@ -38,6 +39,7 @@ function Feed() {
       ),
     [db]
   );
+  console.log(posts);
 
   return (
     <div
@@ -62,7 +64,11 @@ function Feed() {
 
       <Input />
 
-      <div className="pb-72"></div>
+      <div className="pb-72">
+        {posts.map((post) => (
+          <Post key={post.id} id={post.id} post={post.data()} />
+        ))}
+      </div>
     </div>
   );
 }

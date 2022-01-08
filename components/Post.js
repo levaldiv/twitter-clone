@@ -1,6 +1,5 @@
 function Post() {
-  return <div>post</div>;
+  return <div>Post</div>;
 }
 
 export default Post;
-post;
