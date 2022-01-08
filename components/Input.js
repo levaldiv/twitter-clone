@@ -6,8 +6,6 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { useRef, useState } from "react";
-import "emoji-mart/css/emoji-mart.css";
-import { Picker } from "emoji-mart";
 import { db, storage } from "../firebase";
 import {
   addDoc,
@@ -18,33 +16,18 @@ import {
 } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 import { useSession } from "next-auth/react";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 function Input() {
+  const { data: session } = useSession();
   const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   // vars to show emojis
   const [showEmojis, setShowEmojis] = useState(false);
-  const [loading, setLoading] = useState(false);
   // references are pointers
   const filePickerRef = useRef(null);
-  const { data: session } = useSession();
-
-  // accepts an event
-  const addImageToPost = (e) => {
-    // adding image to my poster
-    const reader = new FileReader();
-    // this is how you target files
-    if (e.target.files[0]) {
-      // use the reader and then read the data as data URL and send in the 'blob'
-      reader.readAsDataURL(e.target.files[0]);
-    }
-
-    // accepts reader event
-    reader.onload = (readerEvent) => {
-      // get event and set selected file to the result of the that event
-      setSelectedFile(readerEvent.target.result);
-    };
-  };
 
   // this will send the posts/text/emojis to firebase
   const sendPost = async () => {
@@ -61,7 +44,7 @@ function Input() {
       userImg: session.user.image,
       tag: session.user.tag,
       text: input,
-      timestap: serverTimestamp(),
+      timestamp: serverTimestamp(),
     });
 
     /* get the storage, provide the URL of how its going to store the image */
@@ -86,6 +69,23 @@ function Input() {
     setInput("");
     setSelectedFile(null);
     setShowEmojis(false);
+  };
+
+  // accepts an event
+  const addImageToPost = (e) => {
+    // adding image to my poster
+    const reader = new FileReader();
+    // this is how you target files
+    if (e.target.files[0]) {
+      // use the reader and then read the data as data URL and send in the 'blob'
+      reader.readAsDataURL(e.target.files[0]);
+    }
+
+    // accepts reader event
+    reader.onload = (readerEvent) => {
+      // get event and set selected file to the result of the that event
+      setSelectedFile(readerEvent.target.result);
+    };
   };
 
   // accepting an event
@@ -156,10 +156,10 @@ function Input() {
                 {/* Pointing the reference to this input field here */}
                 <input
                   type="file"
-                  hidden
-                  onChange={addImageToPost}
                   // this functionality happens on the onlcick above
                   ref={filePickerRef}
+                  hidden
+                  onChange={addImageToPost}
                 />
               </div>
 
