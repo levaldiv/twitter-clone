@@ -1,10 +1,42 @@
 import { SparklesIcon } from "@heroicons/react/outline";
-import { useState } from "react";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from "../firebase";
 import Input from "./Input";
 
 function Feed() {
-  // these vars will allow me to retrieve the posts from firebase 
+  // these vars will allow me to retrieve the posts from firebase
   const [posts, setPosts] = useState([]);
+
+  /* Messy way to retrieve posts:
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      // querying our posts by timestamp
+      query(collection(db, "posts"), orderBy("timestamp", "desc")),
+      // receiving snapshot 
+      (snapshot) => {
+        // setting all posts to snapshot docs
+        setPosts(snapshot.docs);
+      }
+    );
+
+    // we can just do an implicit return instead of explicit
+    return () => {
+    unsubscribe();
+    };
+  }, [db]); */
+
+  /* Updated "Cleaner" way */
+  useEffect(
+    () =>
+      onSnapshot(
+        query(collection(db, "posts"), orderBy("timestamp", "desc")),
+        (snapshot) => {
+          setPosts(snapshot.docs);
+        }
+      ),
+    [db]
+  );
 
   return (
     <div
