@@ -39,7 +39,7 @@ function Feed() {
       ),
     [db]
   );
-  console.log(posts);
+  // console.log(posts);
 
   return (
     <div
@@ -66,6 +66,7 @@ function Feed() {
 
       <div className="pb-72">
         {posts.map((post) => (
+          // Key is never sent as a prop
           <Post key={post.id} id={post.id} post={post.data()} />
         ))}
       </div>
