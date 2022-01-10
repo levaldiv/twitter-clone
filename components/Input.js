@@ -111,7 +111,7 @@ function Input() {
       />
 
       {/* divide-y: basically creates a line bw each of the child without adding it manually to each div */}
-      <div className="w-full divide-y divide-gray-700">
+      <div className="divide-y divide-gray-700 w-full">
         <div className={`${selectedFile && "pb-7"} ${input && "space-y-2.5"}`}>
           <textarea
             value={input}
@@ -119,15 +119,13 @@ function Input() {
             onChange={(e) => setInput(e.target.value)}
             rows="2"
             placeholder="What's happening?"
-            className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500
-            tracking-wide w-full min-h-[50px]"
+            className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[50px]"
           />
 
           {selectedFile && (
             <div className="relative">
               <div
-                className="absolute w-8 h-8 bg-[#15181c] hover:bg-[#272c26] bg-opacity-75 rounded-full flex items-center
-              justify-center top-1 left-1 cursor-pointer"
+                className="absolute w-8 h-8 bg-[#15181c] hover:bg-[#272c26] bg-opacity-75 rounded-full flex items-center justify-center top-1 left-1 cursor-pointer"
                 onClick={() => setSelectedFile(null)}
               >
                 <XIcon className="text-white h-5" />

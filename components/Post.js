@@ -31,10 +31,11 @@ function Post({ id, post, postPage }) {
             {/* group: the hover action will happen for the items inside this div (upto the @tag) */}
             <div className="inline-block group">
               <h4
-                className={`font-bold text-[15px] sm:text-base text-[#d9d9d9] group-hover:underline
-                ${!postPage && "inline-block"}`}
+                className={`font-bold text-[15px] sm:text-base text-[#d9d9d9] group-hover:underline ${
+                  !postPage && "inline-block"
+                }`}
               >
-                {post.username}
+                {post?.username}
               </h4>
               <span
                 className={`text-sm sm:text-[15px] ${!postPage && "ml-1.5"}`}
@@ -56,8 +57,9 @@ function Post({ id, post, postPage }) {
           <div className="icon group flex-shrink-0 ml-auto">
             <DotsHorizontalIcon className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]" />
           </div>
+        </div>
 
-          {postPage && (
+        {postPage && (
             <p className="text-[#d9d9d9] mt-0.5 text-xl">{post?.text}</p>
           )}
           <img
@@ -65,7 +67,6 @@ function Post({ id, post, postPage }) {
             alt=""
             className="rounded-2xl max-h-[700px] object-cover mr-2"
           />
-        </div>
       </div>
     </div>
   );
