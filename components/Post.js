@@ -124,7 +124,7 @@ function Post({ id, post, postPage }) {
             )}
           </div> */}
 
-          {session.user.uid === post?.id ? (
+          {/* {session.user.uid === post?.id ? (
             <div
               className="flex items-center space-x-1 group"
               onClick={(e) => {
@@ -143,7 +143,7 @@ function Post({ id, post, postPage }) {
                 <SwitchHorizontalIcon className="h-5 group-hover:text-green-500" />
               </div>
             </div>
-          )}
+          )} */}
 
           {/* <div
             className="flex items-center space-x-1 group"
