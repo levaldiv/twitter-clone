@@ -32,9 +32,15 @@ function Post({ id, post, postPage }) {
   const { data: session } = useSession();
   // gloablly available
   const [isOpen, setIsOpen] = useRecoilState(modalState);
+  const [postId, setPostId] = useRecoilState(postIdState);
+  // comments are going ot be tracked in fb to be able to see them
+  const [comments, setComments] = useState([]);
 
   return (
-    <div className="p-3 flex cursor-pointer border-b border-gray-700">
+    <div
+      className="p-3 flex cursor-pointer border-b border-gray-700"
+      onClick={() => router.push(`/${id}`)}
+    >
       {/* Using option chaining to prevent erroring out
        * If it is undefined, it waits until it gets the user image
        * This will only happen if it is a post */}
@@ -105,11 +111,13 @@ function Post({ id, post, postPage }) {
             postPage && "mx-auto"
           }`}
         >
-          {/* <div
+          <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
               e.stopPropagation();
+              // set the postid to the id of the post, which we are going to retrieve through the feed
               setPostId(id);
+              // this is the modal state, so in this case i want it to be open
               setIsOpen(true);
             }}
           >
@@ -122,9 +130,9 @@ function Post({ id, post, postPage }) {
                 {comments.length}
               </span>
             )}
-          </div> */}
+          </div>
 
-          {/* {session.user.uid === post?.id ? (
+          {session.user.uid === post?.id ? (
             <div
               className="flex items-center space-x-1 group"
               onClick={(e) => {
@@ -143,7 +151,7 @@ function Post({ id, post, postPage }) {
                 <SwitchHorizontalIcon className="h-5 group-hover:text-green-500" />
               </div>
             </div>
-          )} */}
+          )}
 
           {/* <div
             className="flex items-center space-x-1 group"
