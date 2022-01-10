@@ -41,7 +41,7 @@ function Post({ id, post, postPage }) {
               >
                 @{post?.tag}
               </span>
-            </div>{" "}
+            </div>
             ·{" "}
             <span className="hover:underline text-sm sm:text-[15px]">
               {/* <Moment fromNow> {post?.timestamp?.toDate()} </Moment> */}
@@ -56,6 +56,15 @@ function Post({ id, post, postPage }) {
           <div className="icon group flex-shrink-0 ml-auto">
             <DotsHorizontalIcon className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]" />
           </div>
+
+          {postPage && (
+            <p className="text-[#d9d9d9] mt-0.5 text-xl">{post?.text}</p>
+          )}
+          <img
+            src={post?.image}
+            alt=""
+            className="rounded-2xl max-h-[700px] object-cover mr-2"
+          />
         </div>
       </div>
     </div>
