@@ -19,10 +19,33 @@ function Post({ id, post, postPage }) {
           {postPage && (
             <img
               src={post?.userImg}
-              alt=""
+              alt="Profile pic"
               className="h-11 w-11 rounded-full mr-4"
             />
           )}
+
+          {/* This will show the post the user made with all the info */}
+          <div className="text-[#6e767d]">
+            {/* group: the hover action will happen for the items inside this div (upto the @tag) */}
+            <div className="inline-block group">
+              <h4
+                className={`font-bold text-[15px] sm:text-base text-[#d9d9d9] group-hover:underline
+                ${!postPage && "inline-block"}`}
+              >
+                {post.username}
+              </h4>
+              <span
+                className={`text-sm sm:text-[15px] ${!postPage && "ml-1.5"}`}
+              >
+                @{post?.tag}
+              </span>
+            </div>{" "}
+            ·{" "}
+
+            <span className="hover:underline text-sm sm:text-[15px]">
+              {/* <Moment /> */}
+            </span>
+          </div>
         </div>
       </div>
     </div>
