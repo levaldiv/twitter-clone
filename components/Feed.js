@@ -67,6 +67,7 @@ function Feed() {
       <div className="pb-72">
         {posts.map((post) => (
           // Key is never sent as a prop
+          // data contains all the attributes created in input.js
           <Post key={post.id} id={post.id} post={post.data()} />
         ))}
       </div>
