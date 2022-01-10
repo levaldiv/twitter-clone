@@ -1,6 +1,8 @@
-import { DotsHorizontalIcon } from "@heroicons/react/outline";
+import { ChatIcon, DotsHorizontalIcon } from "@heroicons/react/outline";
+import { useSession } from "next-auth/react";
 
 function Post({ id, post, postPage }) {
+  const { data: session } = useSession();
   return (
     <div className="p-3 flex cursor-pointer border-b border-gray-700">
       {/* Using option chaining to prevent erroring out
@@ -60,13 +62,39 @@ function Post({ id, post, postPage }) {
         </div>
 
         {postPage && (
-            <p className="text-[#d9d9d9] mt-0.5 text-xl">{post?.text}</p>
-          )}
-          <img
-            src={post?.image}
-            alt=""
-            className="rounded-2xl max-h-[700px] object-cover mr-2"
-          />
+          <p className="text-[#d9d9d9] mt-0.5 text-xl">{post?.text}</p>
+        )}
+        <img
+          src={post?.image}
+          alt=""
+          className="rounded-2xl max-h-[700px] object-cover mr-2"
+        />
+
+        <div
+          className={`text-[#6e767d] flex justify-between w-10/12 ${
+            postPage && "mx-auto"
+          }`}
+        >
+          
+          <div
+            className="flex items-center space-x-1 group"
+            onClick={(e) => {
+              e.stopPropagation();
+              setPostId(id);
+              setIsOpen(true);
+            }}
+          >
+            <div className="icon group:hover:bg-[#1d9bf0] group-hover:bg-opacity-10">
+              <ChatIcon className="h-5 group-hover:text-[#1d9bf0]" />
+            </div>
+
+            {customElements.length > 0 && (
+              <span className="group-hover:text-[#1d9bf0] text-sm">
+                {comments.length}
+              </span>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
