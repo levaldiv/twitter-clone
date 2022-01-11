@@ -40,10 +40,23 @@ function Post({ id, post, postPage }) {
   const [liked, setLiked] = useState(false);
   const router = useRouter();
 
+  /* How are we going to know a post has been liked and how do we actually setLiked?
+   * Bc likes is an array, we can use findIndex to find an index of likes so it takes
+   * a predicate and a value */
+  useEffect(
+    () =>
+      /* find index, get one like, then check if the like.id matches the session.user.uid
+       * and if it does not return false and will return true instead */
+      setLiked(
+        likes.findIndex((like) => like.id === session?.user?.uid) !== -1
+      ),
+    [likes]
+  );
+
   const likePost = async () => {
     // if the post is liked
     if (liked) {
-      // have to check if it is already liked
+      // have to check if it is already liked, if like is true, delete the doc
       // go into db -> "posts" -> id -> go into the collection of likes -> look for uid of user
       await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
     } else {
