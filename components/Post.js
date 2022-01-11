@@ -35,10 +35,12 @@ function Post({ id, post, postPage }) {
   const [postId, setPostId] = useRecoilState(postIdState);
   // comments are going ot be tracked in fb to be able to see them
   const [comments, setComments] = useState([]);
+  const router = useRouter();
 
   return (
     <div
       className="p-3 flex cursor-pointer border-b border-gray-700"
+      // when i click on my post, i want to push to a page called /id
       onClick={() => router.push(`/${id}`)}
     >
       {/* Using option chaining to prevent erroring out
@@ -114,6 +116,7 @@ function Post({ id, post, postPage }) {
           <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
+              // this prevents the routing when clicking the item
               e.stopPropagation();
               // set the postid to the id of the post, which we are going to retrieve through the feed
               setPostId(id);
@@ -125,19 +128,28 @@ function Post({ id, post, postPage }) {
               <ChatIcon className="h-5 group-hover:text-[#1d9bf0]" />
             </div>
 
+            {/* When comments = 0, dont show anything but when there is a reply,
+             * show the following (will show how many comments the post has) */}
             {comments.length > 0 && (
               <span className="group-hover:text-[#1d9bf0] text-sm">
+                {/* Fetching the comments (array) through a useEffect */}
                 {comments.length}
               </span>
             )}
           </div>
 
+          {/* Only want to display delete icon when it is MY post and not someonelse's
+           * Through MY session, im checking the uid with the post id to see if they match
+           * so it knows it is MY session */}
           {session.user.uid === post?.id ? (
             <div
               className="flex items-center space-x-1 group"
               onClick={(e) => {
+                // ensures it doesnt open to a new page via onclick
                 e.stopPropagation();
+                // using firebase to delete the post i want to delete
                 deleteDoc(doc(db, "posts", id));
+                // after deleting that post i want to push back to our home page
                 router.push("/");
               }}
             >
