@@ -35,7 +35,26 @@ function Post({ id, post, postPage }) {
   const [postId, setPostId] = useRecoilState(postIdState);
   // comments are going ot be tracked in fb to be able to see them
   const [comments, setComments] = useState([]);
+  // this will allow us to see the number of likes a post got
+  const [likes, setLikes] = useState([]);
+  const [liked, setLiked] = useState(false);
   const router = useRouter();
+
+  const likePost = async () => {
+    // if the post is liked
+    if (liked) {
+      // have to check if it is already liked
+      // go into db -> "posts" -> id -> go into the collection of likes -> look for uid of user
+      await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
+    } else {
+      /* go into db -> post collections -> particular post -> go into the collection of likes (the collection of
+       * likes is being created here) -> inside the collection of likes, i want this like to be stored inside of
+       * the id of the session.user.uid */
+      await setDoc(doc(db, "posts", id, "likes", session.user.uid), {
+        username: session.user.name,
+      });
+    }
+  };
 
   return (
     <div
@@ -158,6 +177,7 @@ function Post({ id, post, postPage }) {
               </div>
             </div>
           ) : (
+            // If the post is not mine, show this icon instead
             <div className="flex items-center space-x-1 group">
               <div className="icon group-hover:bg-green-500/10">
                 <SwitchHorizontalIcon className="h-5 group-hover:text-green-500" />
@@ -165,10 +185,11 @@ function Post({ id, post, postPage }) {
             </div>
           )}
 
-          {/* <div
+          <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
               e.stopPropagation();
+              // this will happen when we click on the heart
               likePost();
             }}
           >
@@ -179,6 +200,8 @@ function Post({ id, post, postPage }) {
                 <HeartIcon className="h-5 group-hover:text-pink-600" />
               )}
             </div>
+            {/* this will display the number of likes for a post if it has more than 0
+             * It will fetch the number of likes from firebase */}
             {likes.length > 0 && (
               <span
                 className={`group-hover:text-pink-600 text-sm ${
@@ -188,7 +211,7 @@ function Post({ id, post, postPage }) {
                 {likes.length}
               </span>
             )}
-          </div> */}
+          </div>
 
           <div className="icon group">
             <ShareIcon className="h-5 group-hover:text-[#1d9bf0]" />
