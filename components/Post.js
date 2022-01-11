@@ -41,6 +41,16 @@ function Post({ id, post, postPage }) {
   const [liked, setLiked] = useState(false);
   const router = useRouter();
 
+  /* Fetching the likes from firebase */
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
+        setLikes(snapshot.docs)
+      ),
+    // 2 dependencies here
+    [db, id]
+  );
+
   /* How are we going to know a post has been liked and how do we actually setLiked?
    * Bc likes is an array, we can use findIndex to find an index of likes so it takes
    * a predicate and a value */
