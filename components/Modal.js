@@ -122,7 +122,27 @@ function Modal() {
                         className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[80px]"
                       />
 
-                      <div className="flex items-center justify-between pt-2.5"></div>
+                      <div className="flex items-center justify-between pt-2.5">
+                        <div className="flex items-center">
+                          <div className="icon">
+                            <PhotographIcon className="text-[#1d9bf0] h-[22px]" />
+                          </div>
+
+                          <div className="icon rotate-90">
+                            <ChartBarIcon className="text-[#1d9bf0] h-[22px]" />
+                          </div>
+
+                          <div className="icon">
+                            <EmojiHappyIcon className="text-[#1d9bf0] h-[22px]" />
+                          </div>
+
+                          <div className="icon">
+                            <CalendarIcon className="text-[#1d9bf0] h-[22px]" />
+                          </div>
+                        </div>
+
+                        
+                      </div>
                     </div>
                   </div>
                 </div>
