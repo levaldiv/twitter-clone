@@ -29,6 +29,15 @@ function Modal() {
   const [comment, setComment] = useState("");
   const router = useRouter();
 
+  useEffect(
+    () =>
+      // Get a snapshot -> go into the document -> retrieve this single post
+      onSnapshot(doc(db, "posts", postId), (snapshot) => {
+        setPost(snapshot.data());
+      }),
+    [db]
+  );
+
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog as="div" className="fixed z-50 inset-0 pt-8" onClose={setIsOpen}>
@@ -62,6 +71,31 @@ function Modal() {
                   onClick={() => setIsOpen(false)}
                 >
                   <XIcon className="h-[22px] text-white" />
+                </div>
+              </div>
+
+              <div className="flex px-4 pt-5 pb-2.5 sm:px-6">
+                <div className="w-full">
+                  <div className="text-[#6e767d] flex gap-x-3 relative">
+                    <span className="w-0.5 h-full z-[-1] absolute left-5 top-11 bg-gray-600" />
+                    <img
+                      src={post?.userImg}
+                      alt=""
+                      className="h-11 w-11 rounded-full"
+                    />
+
+                    <div>
+                      <div className="inline-block group">
+                        <h4 className="font-bold text-[#d9d9d9] inline-block text-[15px] sm:text-base">
+                          {post?.username}
+                        </h4>
+                        <span className="ml-1.5 text-sm sm:text-[15px]">
+                          {" "}
+                          @{post?.tag}{" "}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
