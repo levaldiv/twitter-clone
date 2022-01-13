@@ -38,7 +38,8 @@ function Modal() {
     [db]
   );
 
-  const sendComment = async () => {
+  // accepting an event
+  const sendComment = async (e) => {
     // dont want the page to refresh
     e.preventDefault();
 
