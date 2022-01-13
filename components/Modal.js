@@ -110,6 +110,20 @@ function Modal() {
                       src={session.user.image}
                       className="h-11 w-11 rounded-full"
                     />
+
+                    <div className="flex-grow mt-2">
+                      {/* This is where the user will post their reply to a previously made post */}
+                      <textarea
+                        // comment is a piece of state
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        placeholder="Tweet your reply"
+                        rows="2"
+                        className="bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[80px]"
+                      />
+
+                      <div className="flex items-center justify-between pt-2.5"></div>
+                    </div>
                   </div>
                 </div>
               </div>
