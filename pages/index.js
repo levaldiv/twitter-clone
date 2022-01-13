@@ -4,9 +4,12 @@ import Sidebar from "../components/Sidebar";
 import { getProviders, getSession, useSession } from "next-auth/react";
 import Login from "../components/Login";
 import Modal from "../components/Modal";
+import { useRecoilState } from "recoil";
+import { modalState } from "../atoms/modalAtom";
 
 export default function Home({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
+  const [isOpen, setIsOpen] = useRecoilState(modalState);
 
   /* Doesnt return if there is no session, so i return the login component */
   if (!session) return <Login providers={providers} />;
@@ -29,8 +32,9 @@ export default function Home({ trendingResults, followResults, providers }) {
         <Feed />
         {/* Widgets */}
 
-        {/* Modal (using recoil to control the state of the modal) */}
-        <Modal />
+        {/* Modal (using recoil to control the state of the modal)
+         * will only show if the user clicks on the post */}
+        {isOpen && <Modal />}
       </main>
     </div>
   );
