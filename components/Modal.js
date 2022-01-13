@@ -93,8 +93,23 @@ function Modal() {
                           {" "}
                           @{post?.tag}{" "}
                         </span>
-                      </div>
+                      </div>{" "}
+                      ·{" "}
+                      <span>
+                        <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
+                      </span>
+                      <p className="text-[#d9d9d9] text-[15px] sm:text-base">
+                        {post?.text}
+                      </p>
                     </div>
+                  </div>
+
+                  <div className="mt-7 flex space-x-3 w-full">
+                    <img
+                      // this will be the image for the person who is going to reply to the post
+                      src={session.user.image}
+                      className="h-11 w-11 rounded-full"
+                    />
                   </div>
                 </div>
               </div>
