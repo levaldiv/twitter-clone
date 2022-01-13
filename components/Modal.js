@@ -54,7 +54,17 @@ function Modal() {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom bg-black rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full"></div>
+            <div className="inline-block align-bottom bg-black rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
+              <div className="flex items-center px-1.5 py-2 border-b border-gray-700">
+                <div
+                  className="hoverAnimation w-9 h-9 flex items-center justify-center xl:px-0"
+                  // this lets user click the x icon and close the modal (changing globally)
+                  onClick={() => setIsOpen(false)}
+                >
+                  <XIcon className="h-[22px] text-white" />
+                </div>
+              </div>
+            </div>
           </Transition.Child>
         </div>
       </Dialog>
