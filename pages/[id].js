@@ -19,7 +19,7 @@ import { ArrowLeftIcon } from "@heroicons/react/solid";
 // import Comment from "../components/Comment";
 import Head from "next/head";
 
-function PostPage() {
+function PostPage({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState(modalState);
   const router = useRouter();
@@ -34,11 +34,14 @@ function PostPage() {
       }),
     [db]
   );
+  /* Doesnt return if there is no session, so i return the login component */
+  if (!session) return <Login providers={providers} />;
 
   return (
     <div className="">
       <Head>
         <title>
+          {/* added dynamic info to show in the tab bar */}
           {post?.username} on Twitter: "{post?.text}
         </title>
         <link rel="icon" href="/favicon.ico" />
@@ -53,3 +56,24 @@ function PostPage() {
 }
 
 export default PostPage;
+
+export async function getServerSideProps(context) {
+  // trend and follow were created for the widgets comp; both fetching to an api endpoint
+  const trendingResults = await fetch("https://jsonkeeper.com/b/NKEV").then(
+    (res) => res.json()
+  );
+  const followResults = await fetch("https://jsonkeeper.com/b/WWMJ").then(
+    (res) => res.json()
+  );
+  const providers = await getProviders();
+  const session = await getSession(context);
+
+  return {
+    props: {
+      trendingResults,
+      followResults,
+      providers,
+      session,
+    },
+  };
+}
