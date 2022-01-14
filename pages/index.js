@@ -32,7 +32,10 @@ export default function Home({ trendingResults, followResults, providers }) {
         {/* Feed */}
         <Feed />
         {/* Widgets */}
-        <Widgets />
+        <Widgets
+          trendingResults={trendingResults}
+          followResults={followResults}
+        />
 
         {/* Modal (using recoil to control the state of the modal)
          * will only show if the user clicks on the post */}

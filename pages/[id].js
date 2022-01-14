@@ -94,7 +94,10 @@ function PostPage({ trendingResults, followResults, providers }) {
             </div>
           )}
         </div>
-        <Widgets />
+        <Widgets
+          trendingResults={trendingResults}
+          followResults={followResults}
+        />
         {isOpen && <Modal />}
       </main>
     </div>
