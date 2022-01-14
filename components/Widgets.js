@@ -1,5 +1,5 @@
 import { SearchIcon } from "@heroicons/react/outline";
-// import Trending from "./Trending";
+import Trending from "./Trending";
 import Image from "next/image";
 
 function Widgets() {
