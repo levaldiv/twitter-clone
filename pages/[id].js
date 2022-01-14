@@ -24,6 +24,7 @@ function PostPage() {
   const [isOpen, setIsOpen] = useRecoilState(modalState);
   const router = useRouter();
   const { id } = router.query;
+  const [post, setPost] = useState();
 
   // getting the post
   useEffect(
@@ -37,7 +38,9 @@ function PostPage() {
   return (
     <div className="">
       <Head>
-        <title></title>
+        <title>
+          {post?.username} on Twitter: "{post?.text}
+        </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
