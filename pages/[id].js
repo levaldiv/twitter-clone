@@ -18,6 +18,7 @@ import { db } from "../firebase";
 import { ArrowLeftIcon } from "@heroicons/react/solid";
 import Comment from "../components/Comment";
 import Head from "next/head";
+import Login from "../components/Login";
 
 function PostPage({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
@@ -86,7 +87,7 @@ function PostPage({ trendingResults, followResults, providers }) {
                 <Comment
                   key={comment.id}
                   id={comment.id}
-                  comment={comment.data}
+                  comment={comment.data()}
                 />
               ))}
             </div>
