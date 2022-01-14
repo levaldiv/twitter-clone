@@ -1,5 +1,5 @@
 function Trending() {
-  return <div>hi</div>;
+  return <div></div>;
 }
 
 export default Trending;
