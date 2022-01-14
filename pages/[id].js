@@ -22,9 +22,10 @@ import Head from "next/head";
 function PostPage({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
   const [isOpen, setIsOpen] = useRecoilState(modalState);
+  const [post, setPost] = useState();
+  const [comments, setComments] = useState([]);
   const router = useRouter();
   const { id } = router.query;
-  const [post, setPost] = useState();
 
   // getting the post
   useEffect(
@@ -33,6 +34,19 @@ function PostPage({ trendingResults, followResults, providers }) {
         setPost(snapshot.data());
       }),
     [db]
+  );
+
+  // retrieving comments
+  useEffect(
+    () =>
+      onSnapshot(
+        query(
+          collection(db, "posts", id, "comments"),
+          orderBy("timestamp", "desc")
+        ),
+        (snapshot) => setComments(snapshot.docs)
+      ),
+    [db, id]
   );
   /* Doesnt return if there is no session, so i return the login component */
   if (!session) return <Login providers={providers} />;
@@ -64,6 +78,19 @@ function PostPage({ trendingResults, followResults, providers }) {
 
           {/* this shows the entire post */}
           <Post id={id} post={post} postPage />
+
+          {/* This will show all the comments that were made to a post */}
+          {comments.length > 0 && (
+            <div className="pb-72">
+              {comments.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  id={comment.id}
+                  comment={comment.data}
+                />
+              ))}
+            </div>
+          )}
         </div>
         {isOpen && <Modal />}
       </main>
