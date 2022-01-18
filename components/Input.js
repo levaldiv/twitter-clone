@@ -15,9 +15,11 @@ import {
   updateDoc,
 } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "@firebase/storage";
-import { useSession } from "next-auth/react";
-import "emoji-mart/css/emoji-mart.css";
+import { signOut, useSession } from "next-auth/react";
+import dynamic from "next/dynamic";
+// const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 import { Picker } from "emoji-mart";
+import "emoji-mart/css/emoji-mart.css";
 
 function Input() {
   const { data: session } = useSession();
