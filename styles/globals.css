@@ -103,6 +103,10 @@
     @apply text-[#d9d9d9] flex items-center justify-center xl:justify-start text-xl space-x-3;
   }
 
+  /*********** TRENDING COMPONENT ***********/
+  .bkgdAnimation {
+    @apply hover:bg-white hover:bg-opacity-[0.03] px-4 py-2 cursor-pointer transition duration-200 ease-out flex items-center justify-between;
+  }
   .tag {
     @apply text-[#1d9bf0] font-normal hover:underline cursor-pointer;
   }
