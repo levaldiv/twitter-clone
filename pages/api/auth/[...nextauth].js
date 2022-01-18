@@ -32,4 +32,6 @@ export default NextAuth({
       return session;
     },
   },
+  // This secret can be a random string
+  secret: process.env.JWT_SECRET,
 });
