@@ -7,6 +7,7 @@ import Post from "./Post";
 import { useSession } from "next-auth/react";
 
 function Feed() {
+  const { data: session } = useSession();
   // these vars will allow me to retrieve the posts from firebase
   const [posts, setPosts] = useState([]);
 
