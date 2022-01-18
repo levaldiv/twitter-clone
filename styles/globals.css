@@ -98,6 +98,11 @@
     @apply text-[#d9d9d9] flex items-center justify-center xl:ml-auto xl:-mr-5 mt-auto;
   }
 
+  /*********** SIDEBARLINK COMPONENT ***********/
+  .sidebarTextStyle {
+    @apply text-[#d9d9d9] flex items-center justify-center xl:justify-start text-xl space-x-3;
+  }
+
   .tag {
     @apply text-[#1d9bf0] font-normal hover:underline cursor-pointer;
   }
