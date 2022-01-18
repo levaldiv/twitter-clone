@@ -70,6 +70,19 @@
     duration-300 ease-in-out;
   }
 
+  /*********** MODAL COMPONENT ***********/
+  .popupBkgd {
+    @apply inline-block align-bottom bg-black rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full;
+  }
+
+  .tweetComm {
+    @apply bg-transparent outline-none text-[#d9d9d9] text-lg placeholder-gray-500 tracking-wide w-full min-h-[80px];
+  }
+
+  .replyBtn {
+    @apply bg-[#1d9bf0] text-white rounded-full px-4 py-1.5 font-bold shadow-md hover:bg-[#1a8cd8] disabled:hover:bg-[#1d9bf0] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
   .tag {
     @apply text-[#1d9bf0] font-normal hover:underline cursor-pointer;
   }
