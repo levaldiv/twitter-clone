@@ -19,10 +19,20 @@
     justify-center rounded-full transition ease-out;
   }
 
+  /*********** FEED COMPONENT ***********/
+
   .hoverAnimation {
     @apply hover:bg-[#d9d9d9] hover:bg-opacity-10 rounded-full cursor-pointer
         w-[52px] h-[52px] xl:w-auto xl:h-auto xl:py-3 xl:px-4 transition duration-200
         ease-out;
+  }
+
+  .sideBorder {
+    @apply flex-grow border-l border-r border-gray-700 max-w-2xl sm:ml-[73px] xl:ml-[370px];
+  }
+
+  .topSection {
+    @apply text-[#d9d9d9] flex items-center sm:justify-between py-2 px-3 sticky top-0 z-50 bg-black border-b border-gray-700;
   }
 
   .tweet {
