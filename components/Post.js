@@ -97,8 +97,7 @@ function Post({ id, post, postPage }) {
     <div
       className="p-3 flex cursor-pointer border-b border-gray-700"
       // when i click on my post, i want to push to a page called /id
-      onClick={() => router.push(`/${id}`)}
-    >
+      onClick={() => router.push(`/${id}`)} >
       {/* Using option chaining to prevent erroring out
        * If it is undefined, it waits until it gets the user image
        * This will only happen if it is a post */}
@@ -106,8 +105,7 @@ function Post({ id, post, postPage }) {
         <img
           src={post?.userImg}
           alt=""
-          className="h-11 w-11 rounded-full mr-4"
-        />
+          className="userImage" />
       )}
 
       <div className="flex flex-col space-y-2 w-full">
@@ -118,31 +116,31 @@ function Post({ id, post, postPage }) {
             <img
               src={post?.userImg}
               alt="Profile pic"
-              className="h-11 w-11 rounded-full mr-4"
-            />
+              className="userImage" />
           )}
 
           {/* This will show the post the user made with all the info */}
           <div className="text-[#6e767d]">
             {/* group: the hover action will happen for the items inside this div (upto the @tag) */}
             <div className="inline-block group">
-              <h4
+              
+              <h4 
                 className={`font-bold text-[15px] sm:text-base text-[#d9d9d9] group-hover:underline ${
-                  !postPage && "inline-block"
-                }`}
-              >
+                !postPage && "inline-block" }`} >
                 {post?.username}
               </h4>
+              
               <span
-                className={`text-sm sm:text-[15px] ${!postPage && "ml-1.5"}`}
-              >
+                className={`text-sm sm:text-[15px] ${!postPage && "ml-1.5"}`} >
                 @{post?.tag}
               </span>
             </div>{" "}
             ·{" "}
+            
             <span className="hover:underline text-sm sm:text-[15px]">
               <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
             </span>
+            
             {!postPage && (
               <p className="text-[#d9d9d9] text-[15px] sm:text-base mt-0.5">
                 {post?.text}
@@ -159,16 +157,14 @@ function Post({ id, post, postPage }) {
           <p className="text-[#d9d9d9] mt-0.5 text-xl">{post?.text}</p>
         )}
         <img
-          src={post?.image}
-          alt=""
-          className="rounded-2xl max-h-[700px] object-cover mr-2"
-        />
+            src={post?.image}
+            alt=""
+            className="rounded-2xl max-h-[700px] object-cover mr-2" />
 
         <div
-          className={`text-[#6e767d] flex justify-between w-10/12 ${
-            postPage && "mx-auto"
-          }`}
-        >
+            className={`text-[#6e767d] flex justify-between w-10/12 ${
+            postPage && "mx-auto" }`} >
+          
           <div
             className="flex items-center space-x-1 group"
             onClick={(e) => {
@@ -177,9 +173,9 @@ function Post({ id, post, postPage }) {
               // set the postid to the id of the post, which we are going to retrieve through the feed
               setPostId(id);
               // this is the modal state, so in this case i want it to be open
-              setIsOpen(true);
-            }}
-          >
+              setIsOpen(true); 
+            }} >
+            
             <div className="icon group:hover:bg-[#1d9bf0] group-hover:bg-opacity-10">
               <ChatIcon className="h-5 group-hover:text-[#1d9bf0]" />
             </div>
@@ -207,8 +203,8 @@ function Post({ id, post, postPage }) {
                 deleteDoc(doc(db, "posts", id));
                 // after deleting that post i want to push back to our home page
                 router.push("/");
-              }}
-            >
+              }} >
+              
               <div className="icon group-hover:bg-red-600/10">
                 <TrashIcon className="h-5 group-hover:text-red-600" />
               </div>
@@ -228,8 +224,8 @@ function Post({ id, post, postPage }) {
               e.stopPropagation();
               // this will happen when we click on the heart
               likePost();
-            }}
-          >
+            }} >
+            
             <div className="icon group-hover:bg-pink-600/10">
               {liked ? (
                 <HeartIconFilled className="h-5 text-pink-600" />
@@ -237,14 +233,13 @@ function Post({ id, post, postPage }) {
                 <HeartIcon className="h-5 group-hover:text-pink-600" />
               )}
             </div>
+            
             {/* this will display the number of likes for a post if it has more than 0
              * It will fetch the number of likes from firebase */}
             {likes.length > 0 && (
               <span
-                className={`group-hover:text-pink-600 text-sm ${
-                  liked && "text-pink-600"
-                }`}
-              >
+                  className={`group-hover:text-pink-600 text-sm ${
+                  liked && "text-pink-600" }`} >
                 {likes.length}
               </span>
             )}
