@@ -18,12 +18,14 @@ What you can do:
 ## Dependencies used
 
 1. [heroicons/react](https://github.com/tailwindlabs/heroicons)
-2. [Lodash](https://lodash.com/)
+2. [headlessui/react](https://headlessui.dev/)
 3. [next](https://nextjs.org/)
 4. [next-auth](https://next-auth.js.org/)
 5. [react](https://reactjs.org/)
 6. [react-dom](https://reactjs.org/docs/react-dom.html)
 7. [recoil](https://recoiljs.org/)
-8. [spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node)
+8. [emoji-mart](https://www.npmjs.com/package/emoji-mart)
 9. [tailwind-scrollbar-hide](https://www.npmjs.com/package/tailwind-scrollbar-hide)
-10. [Spotify](https://www.spotify.com/us/)
+10. [firebase](https://firebase.google.com/)
+11. [moment](https://www.npmjs.com/package/react-moment#installing)
+12. [react-moment](https://www.npmjs.com/package/react-moment#installing)
