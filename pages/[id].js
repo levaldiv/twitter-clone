@@ -58,6 +58,7 @@ function PostPage({ trendingResults, followResults, providers }) {
           {/* added dynamic info to show in the tab bar */}
           {post?.username} on Twitter: "{post?.text}"
         </title>
+
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
