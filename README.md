@@ -11,7 +11,7 @@ interative. <br>
 
 What you can do: 
 - You can login using Google
-- You can make posts (use emojis, uplaod images)
+- You can make posts (use emojis, upload images)
 - Like other posts
 - Make comments to that post
 
