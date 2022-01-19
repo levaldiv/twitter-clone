@@ -16,7 +16,7 @@ export default function Home({ trendingResults, followResults, providers }) {
   if (!session) return <Login providers={providers} />;
 
   return (
-    <div className="">
+    <div>
       {/* The head edits the text/icon next to the tab */}
       <Head>
         <title>Twitter</title>

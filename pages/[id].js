@@ -54,7 +54,7 @@ function PostPage({ trendingResults, followResults, providers }) {
   if (!session) return <Login providers={providers} />;
 
   return (
-    <div className="">
+    <div>
       <Head>
         <title>
           {/* added dynamic info to show in the tab bar */}
