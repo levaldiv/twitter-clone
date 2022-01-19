@@ -20,22 +20,20 @@ function Comment({ comment }) {
               <h4 className="font-bold text-[#d9d9d9] text-[15px] sm:text-base inline-block group-hover:underline">
                 {comment?.username}
               </h4>
-              
+
               <span className="ml-1.5 text-sm sm:text-[15px]">
                 @{comment?.tag}{" "}
               </span>
             </div>{" "}
             ·{" "}
-            
             <span className="hover:underline text-sm sm:text-[15px]">
               <Moment fromNow>{comment?.timestamp?.toDate()}</Moment>
             </span>
-            
-            <p className="text-[#d9d9d9] mt-0.5 max-w-lg text-[15px] sm:text-base">
+            <p className="text-[#d9d9d9] mt-0.5 max-w-lg overflow-scroll scrollbar-hide text-[15px] sm:text-base">
               {comment?.comment}
             </p>
           </div>
-          
+
           <div className="icon group flex-shrink-0">
             <DotsHorizontalIcon className="h-5 text-[#6e767d] group-hover:text-[#1d9bf0]" />
           </div>
