@@ -12,14 +12,12 @@ import { useRecoilState } from "recoil";
 import { modalState } from "../atoms/modalAtom";
 import Modal from "../components/Modal";
 import Sidebar from "../components/Sidebar";
-// import Widgets from "../components/Widgets";
+import Widgets from "../components/Widgets";
 import Post from "../components/Post";
 import { db } from "../firebase";
 import { ArrowLeftIcon } from "@heroicons/react/solid";
 import Comment from "../components/Comment";
 import Head from "next/head";
-import Login from "../components/Login";
-import Widgets from "../components/Widgets";
 
 function PostPage({ trendingResults, followResults, providers }) {
   const { data: session } = useSession();
@@ -58,7 +56,7 @@ function PostPage({ trendingResults, followResults, providers }) {
       <Head>
         <title>
           {/* added dynamic info to show in the tab bar */}
-          {post?.username} on Twitter: "{post?.text}
+          {post?.username} on Twitter: "{post?.text}"
         </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
