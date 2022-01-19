@@ -1,7 +1,9 @@
 # Twitter Clone
 
 This Twitter clone is a basic clone of the actual [Twitter](https://twitter.com/). </br>
-This is also my second clone created using Tailwind and other amazing tools. Note: will be deployed soon.
+This is also my second clone created using Tailwind and other amazing tools. <br>
+
+Note: Check out the deployed version [here](https://twitter-clone-orcin.vercel.app/)
 
 ## Notes:
 
